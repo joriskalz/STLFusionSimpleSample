@@ -19,7 +19,7 @@
     var error = State.Error;
 }
 
-<h3>ListSample</h3>
+<h3>List Sample</h3>
 
 <div class="alert alert-primary">
     Open <a href="@Navigator.Uri" target="_blank">this page</a> or
@@ -135,8 +135,12 @@
         try
         {
             var locals = Locals.Value;
-            await dataService.AddMessageAsync(locals.Message);
-            UpdateLocals(l => l.Message = "");
+            if (locals.Message != string.Empty)
+            {
+                await dataService.AddMessageAsync(locals.Message);
+                UpdateLocals(l => l.Message = "");
+            }
+
         }
         catch (Exception e)
         {

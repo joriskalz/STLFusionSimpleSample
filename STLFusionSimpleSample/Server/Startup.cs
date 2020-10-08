@@ -46,10 +46,11 @@ namespace STLFusionSimpleSample.Server
             // This method registers services marked with any of ServiceAttributeBase descendants, including:
             // [Service], [ComputeService], [RestEaseReplicaService], [LiveStateUpdater]
             services.AttributeBased().AddServicesFrom(Assembly.GetExecutingAssembly());
+            services.AddSingleton(c => new UpdateDelayer.Options() { Delay = TimeSpan.FromSeconds(0.01) });
 
 
             // Registering shared services from the client
-            Client.Program.ConfigureSharedServices(services);
+            //Client.Program.ConfigureSharedServices(services);
 
             // Web
             services.AddControllersWithViews();
