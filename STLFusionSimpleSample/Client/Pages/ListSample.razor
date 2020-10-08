@@ -75,7 +75,7 @@
 
 @code {
 
-    Timer timer;
+    //Timer timer;
 
     public class LocalsModel
     {
@@ -119,14 +119,14 @@
     //    SendMessageAsync();
     //}
 
-    //protected override async Task<Model> ComputeStateAsync(CancellationToken cancellationToken)
-    //{
-    //    var dataList = await dataService.GetDataListAsync(10, cancellationToken);
-    //    return new Model()
-    //    {
-    //        DataList = dataList,
-    //    };
-    //}
+    protected override async Task<Model> ComputeStateAsync(CancellationToken cancellationToken)
+    {
+        var dataList = await dataService.GetDataListAsync(10, cancellationToken);
+        return new Model()
+        {
+            DataList = dataList,
+        };
+    }
 
 
     private async Task SendMessageAsync()
