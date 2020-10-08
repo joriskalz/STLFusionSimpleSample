@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Stl.Fusion;
+using STLFusionSimpleSample.Shared.Model;
 
 namespace STLFusionSimpleSample.Shared.Services
 {
