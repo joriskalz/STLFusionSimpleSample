@@ -22,7 +22,7 @@ namespace STLFusionSimpleSample.Server.Services
 
         public IEnumerable<string> GetMessages(int lenght)
         {
-            return _messages.TakeLast(lenght);
+            return _messages.TakeLast(lenght).Reverse();
         }
     }
 }

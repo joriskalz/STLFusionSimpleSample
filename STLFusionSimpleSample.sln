@@ -9,9 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STLFusionSimpleSample.Clien
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STLFusionSimpleSample.Shared", "STLFusionSimpleSample\Shared\STLFusionSimpleSample.Shared.csproj", "{8A0294A3-14F8-4674-85CD-34C1B0F2DE2E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{68C02D0C-A32C-46D3-B42C-2171821D613F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7F092E29-A90F-4A8D-A9D7-3FC6BB9BCC9A}"
 	ProjectSection(SolutionItems) = preProject
-		docs\msedge_1S0cAB6eZh.png = docs\msedge_1S0cAB6eZh.png
+		msedge_1S0cAB6eZh.png = msedge_1S0cAB6eZh.png
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
