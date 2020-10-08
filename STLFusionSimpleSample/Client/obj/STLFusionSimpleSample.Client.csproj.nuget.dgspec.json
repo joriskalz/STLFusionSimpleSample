@@ -1,0 +1,152 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Storage\\Dev\\blazor\\STLFusionSimpleSample\\STLFusionSimpleSample\\Client\\STLFusionSimpleSample.Client.csproj": {}
+  },
+  "projects": {
+    "C:\\Storage\\Dev\\blazor\\STLFusionSimpleSample\\STLFusionSimpleSample\\Client\\STLFusionSimpleSample.Client.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Storage\\Dev\\blazor\\STLFusionSimpleSample\\STLFusionSimpleSample\\Client\\STLFusionSimpleSample.Client.csproj",
+        "projectName": "STLFusionSimpleSample.Client",
+        "projectPath": "C:\\Storage\\Dev\\blazor\\STLFusionSimpleSample\\STLFusionSimpleSample\\Client\\STLFusionSimpleSample.Client.csproj",
+        "packagesPath": "C:\\Users\\jkalz\\.nuget\\packages\\",
+        "outputPath": "C:\\Storage\\Dev\\blazor\\STLFusionSimpleSample\\STLFusionSimpleSample\\Client\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\jkalz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.myget.org/F/linq2db/api/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "C:\\Storage\\Dev\\blazor\\STLFusionSimpleSample\\STLFusionSimpleSample\\Shared\\STLFusionSimpleSample.Shared.csproj": {
+                "projectPath": "C:\\Storage\\Dev\\blazor\\STLFusionSimpleSample\\STLFusionSimpleSample\\Shared\\STLFusionSimpleSample.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "Microsoft.AspNetCore.Components.WebAssembly": {
+              "target": "Package",
+              "version": "[3.2.1, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.Build": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.2.1, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.2.1, )"
+            },
+            "System.Net.Http.Json": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Storage\\Dev\\blazor\\STLFusionSimpleSample\\STLFusionSimpleSample\\Shared\\STLFusionSimpleSample.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Storage\\Dev\\blazor\\STLFusionSimpleSample\\STLFusionSimpleSample\\Shared\\STLFusionSimpleSample.Shared.csproj",
+        "projectName": "STLFusionSimpleSample.Shared",
+        "projectPath": "C:\\Storage\\Dev\\blazor\\STLFusionSimpleSample\\STLFusionSimpleSample\\Shared\\STLFusionSimpleSample.Shared.csproj",
+        "packagesPath": "C:\\Users\\jkalz\\.nuget\\packages\\",
+        "outputPath": "C:\\Storage\\Dev\\blazor\\STLFusionSimpleSample\\STLFusionSimpleSample\\Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\jkalz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.myget.org/F/linq2db/api/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
