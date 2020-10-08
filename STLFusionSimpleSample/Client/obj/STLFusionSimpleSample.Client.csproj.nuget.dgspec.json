@@ -32,7 +32,6 @@
         },
         "frameworks": {
           "netstandard2.1": {
-            "targetAlias": "netstandard2.1",
             "projectReferences": {
               "C:\\Storage\\Dev\\blazor\\STLFusionSimpleSample\\STLFusionSimpleSample\\Shared\\STLFusionSimpleSample.Shared.csproj": {
                 "projectPath": "C:\\Storage\\Dev\\blazor\\STLFusionSimpleSample\\STLFusionSimpleSample\\Shared\\STLFusionSimpleSample.Shared.csproj"
@@ -48,7 +47,6 @@
       },
       "frameworks": {
         "netstandard2.1": {
-          "targetAlias": "netstandard2.1",
           "dependencies": {
             "Microsoft.AspNetCore.Components.WebAssembly": {
               "target": "Package",
@@ -120,7 +118,6 @@
         },
         "frameworks": {
           "netstandard2.1": {
-            "targetAlias": "netstandard2.1",
             "projectReferences": {}
           }
         },
@@ -132,7 +129,6 @@
       },
       "frameworks": {
         "netstandard2.1": {
-          "targetAlias": "netstandard2.1",
           "dependencies": {
             "Stl.Fusion.Client": {
               "target": "Package",
