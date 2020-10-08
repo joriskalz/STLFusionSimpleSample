@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using STLFusionSimpleSample.Server.Services;
+using STLFusionSimpleSample.Shared.Services;
 using System.Linq;
 
 namespace STLFusionSimpleSample.Server
@@ -22,6 +24,8 @@ namespace STLFusionSimpleSample.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // In Memory State Service
+            services.AddSingleton<IDataListStorageService, DataListStorageService>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
