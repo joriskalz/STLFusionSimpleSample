@@ -76,6 +76,55 @@ using STLFusionSimpleSample.Client.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "C:\Storage\Dev\blazor\STLFusionSimpleSample\STLFusionSimpleSample\Client\_Imports.razor"
+using Stl.Fusion;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "C:\Storage\Dev\blazor\STLFusionSimpleSample\STLFusionSimpleSample\Client\_Imports.razor"
+using Stl.Fusion.Blazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "C:\Storage\Dev\blazor\STLFusionSimpleSample\STLFusionSimpleSample\Client\_Imports.razor"
+using Stl.Fusion.Blazor.Authentication;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "C:\Storage\Dev\blazor\STLFusionSimpleSample\STLFusionSimpleSample\Client\_Imports.razor"
+using Stl.Fusion.Bridge;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "C:\Storage\Dev\blazor\STLFusionSimpleSample\STLFusionSimpleSample\Client\_Imports.razor"
+using Stl.Fusion.Bridge.Messages;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "C:\Storage\Dev\blazor\STLFusionSimpleSample\STLFusionSimpleSample\Client\_Imports.razor"
+using Stl.Fusion.Authentication;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "C:\Storage\Dev\blazor\STLFusionSimpleSample\STLFusionSimpleSample\Client\_Imports.razor"
+using Stl.Serialization;
+
+#line default
+#line hidden
+#nullable disable
     public partial class NavMenu : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

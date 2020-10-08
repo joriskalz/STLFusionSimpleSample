@@ -1,7 +1,162 @@
 ﻿@page  "/listsample"
 
+@using System.Threading
+@using Stl
+@using Stl.Reflection
+@using STLFusionSimpleSample.Shared.Services
+@using STLFusionSimpleSample.Shared.Model
+
+@inherits LiveComponentBase<ListSample.Model, ListSample.LocalsModel>
+
+@inject IDataService dataService
+
+@inject NavigationManager Navigator
+
+@{
+    var locals = Locals.Value;
+    var state = State.LastValue;
+    var dataList = state.DataList;
+    var error = State.Error;
+}
+
 <h3>ListSample</h3>
 
+<div class="alert alert-primary">
+    Open <a href="@Navigator.Uri" target="_blank">this page</a> or
+    <a href="/listsample" target="_blank">List Sample</a>
+    in another window to see everything is updated in sync in real time.
+</div>
+@if (locals.Error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @locals.Error.Message
+    </div>
+}
+@if (error != null)
+{
+    <div class="alert alert-warning" role="alert">
+        Update error: @error.Message
+    </div>
+}
+
+<form @onsubmit="SendMessageAsync">
+    <div class="input-group pb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Message</span>
+        </div>
+        <input class="form-control"
+               placeholder="Type your message"
+               @bind-value="locals.Message" />
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-success">Send</button>
+        </div>
+    </div>
+</form>
+
+<table class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Message</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var message in dataList.Messages)
+        {
+            {
+                <tr>
+                    <td style="width: auto; min-width: 67%">@message</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+
 @code {
+
+    Timer timer;
+
+    public class LocalsModel
+    {
+        public string Message { get; set; } = "";
+        public Exception? Error { get; set; }
+    }
+
+    public class Model
+    {
+        public DataList DataList { get; set; } = new DataList();
+    }
+
+    private bool HasError => Locals.Value.Error != null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (ReferenceEquals(State, null))
+            return; // Not sure why this happens on SSB sometimes, but...
+
+        //timer = new Timer(state => { InvokeAsync(UpdateCounter); }, null, 0, 100);
+
+    }
+
+    //async Task UpdateCounter()
+    //{
+
+    //    //Generate random sleeptime
+    //    Random waitTime = new Random();
+    //    var seconds = waitTime.Next(100, 5 * 1000);
+
+    //    await Task.Delay(seconds);
+
+    //    var locals = Locals.Value;
+
+    //    locals.Message = DateTime.Now.Ticks.ToString();
+
+
+
+    //    StateHasChanged();
+
+    //    SendMessageAsync();
+    //}
+
+    //protected override async Task<Model> ComputeStateAsync(CancellationToken cancellationToken)
+    //{
+    //    var dataList = await dataService.GetDataListAsync(10, cancellationToken);
+    //    return new Model()
+    //    {
+    //        DataList = dataList,
+    //    };
+    //}
+
+
+    private async Task SendMessageAsync()
+    {
+        ResetError();
+        try
+        {
+            var locals = Locals.Value;
+            await dataService.AddMessageAsync(locals.Message);
+            UpdateLocals(l => l.Message = "");
+        }
+        catch (Exception e)
+        {
+            SetError(e);
+        }
+    }
+
+    // Convenience shortcuts
+
+    private void ResetError()
+        => SetError(null);
+
+    private void SetError(Exception? error)
+        => UpdateLocals(l => l.Error = error);
+
+    private void UpdateLocals(Action<LocalsModel> updater)
+    {
+        var clone = MemberwiseCloner.Clone(Locals.Value);
+        updater.Invoke(clone);
+        Locals.Value = clone;
+    }
 
 }

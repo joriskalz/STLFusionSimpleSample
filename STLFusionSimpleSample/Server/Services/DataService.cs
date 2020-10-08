@@ -1,9 +1,11 @@
-﻿using Stl.Fusion;
+﻿using Stl.Async;
+using Stl.Fusion;
 using STLFusionSimpleSample.Shared.Model;
 using STLFusionSimpleSample.Shared.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,12 +25,21 @@ namespace STLFusionSimpleSample.Server.Services
         {
             _dataListStorageService.AddMessage(text);
 
+            // Invalidation
+            Computed.Invalidate(EveryDataList);
+
             return text;
         }
 
         public virtual async Task<DataList> GetDataListAsync(int length, CancellationToken cancellationToken = default)
         {
-            return new DataList(_dataListStorageService.GetMessages().ToList());
+            await EveryDataList().ConfigureAwait(false);
+
+            return new DataList(_dataListStorageService.GetMessages(length).ToList());
         }
+
+        [ComputeMethod]
+        protected virtual Task<Unit> EveryDataList() => TaskEx.UnitTask;
+
     }
 }

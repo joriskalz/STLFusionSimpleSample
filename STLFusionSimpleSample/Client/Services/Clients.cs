@@ -17,7 +17,7 @@ namespace STLFusionSimpleSample.Client.Services
     {
         // Writers
         [Post("addMessage")]
-        Task<string> AddMessageAsync(long userId, string text, CancellationToken cancellationToken = default);
+        Task<string> AddMessageAsync(string text, CancellationToken cancellationToken = default);
 
         // Readers
         [Get("getData")]

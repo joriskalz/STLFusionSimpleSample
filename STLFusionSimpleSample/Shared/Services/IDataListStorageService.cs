@@ -8,6 +8,6 @@ namespace STLFusionSimpleSample.Shared.Services
     {
         public void AddMessage(string message);
 
-        public IEnumerable<string> GetMessages();
+        public IEnumerable<string> GetMessages(int lenght);
     }
 }

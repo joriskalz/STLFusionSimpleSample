@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JvVeJMIuGE0ThRwFJzxZHZ1B9qLGrDhcITZyJgamdO1qDKgd1PCugxRwGq3S18H/DPeOqkATT1WNNWG7EgnZLQ==",
+  "dgSpecHash": "Y3iSpVMYAp4G4Y0J4cVElhvERIN1nKpXZ8rtoRQf1SmfKv+X82th0HkWbB3USDxMQMMage2wdJPc8xdkutTI0A==",
   "success": true,
   "projectFilePath": "C:\\Storage\\Dev\\blazor\\STLFusionSimpleSample\\STLFusionSimpleSample\\Server\\STLFusionSimpleSample.Server.csproj",
   "expectedPackageFiles": [

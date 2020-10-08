@@ -20,9 +20,9 @@ namespace STLFusionSimpleSample.Server.Services
             _messages.Add(message);
         }
 
-        public IEnumerable<string> GetMessages()
+        public IEnumerable<string> GetMessages(int lenght)
         {
-            return _messages;
+            return _messages.TakeLast(lenght);
         }
     }
 }

@@ -47,6 +47,11 @@ namespace STLFusionSimpleSample.Server
             // [Service], [ComputeService], [RestEaseReplicaService], [LiveStateUpdater]
             services.AttributeBased().AddServicesFrom(Assembly.GetExecutingAssembly());
 
+
+            // Registering shared services from the client
+            Client.Program.ConfigureSharedServices(services);
+
+            // Web
             services.AddControllersWithViews();
             services.AddRazorPages();
 
@@ -98,6 +103,7 @@ namespace STLFusionSimpleSample.Server
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapFusionWebSocketServer();
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
             });
