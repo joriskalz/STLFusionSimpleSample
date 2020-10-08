@@ -5,9 +5,17 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using Stl.DependencyInjection;
+using Stl.Fusion;
+using Stl.Fusion.Bridge;
+using Stl.Fusion.Client;
+using Stl.Fusion.Server;
 using STLFusionSimpleSample.Server.Services;
 using STLFusionSimpleSample.Shared.Services;
+using System;
 using System.Linq;
+using System.Reflection;
 
 namespace STLFusionSimpleSample.Server
 {
@@ -27,8 +35,30 @@ namespace STLFusionSimpleSample.Server
             // In Memory State Service
             services.AddSingleton<IDataListStorageService, DataListStorageService>();
 
+            // Fusion services
+            services.AddSingleton(new Publisher.Options() { Id = Settings.PublisherId });
+
+            var fusion = services.AddFusion();
+            var fusionServer = fusion.AddWebSocketServer();
+            var fusionClient = fusion.AddRestEaseClient();
+            var fusionAuth = fusion.AddAuthentication().AddServer();
+
+            // This method registers services marked with any of ServiceAttributeBase descendants, including:
+            // [Service], [ComputeService], [RestEaseReplicaService], [LiveStateUpdater]
+            services.AttributeBased().AddServicesFrom(Assembly.GetExecutingAssembly());
+
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            // Swagger & debug tools
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Stl.Fusion.Simple Sample",
+                    Version = "v1"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,9 +76,22 @@ namespace STLFusionSimpleSample.Server
                 app.UseHsts();
             }
 
+            app.UseWebSockets(new WebSocketOptions()
+            {
+                ReceiveBufferSize = 16_384,
+                KeepAliveInterval = TimeSpan.FromSeconds(15),
+            });
+            app.UseFusionSession();
+
             app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
+            });
 
             app.UseRouting();
 

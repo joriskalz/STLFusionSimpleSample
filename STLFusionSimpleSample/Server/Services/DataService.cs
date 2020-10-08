@@ -19,14 +19,14 @@ namespace STLFusionSimpleSample.Server.Services
             _dataListStorageService = dataListStorageService;
         }
 
-        public async Task<string> AddMessageAsync(string text, CancellationToken cancellationToken = default)
+        public virtual async Task<string> AddMessageAsync(string text, CancellationToken cancellationToken = default)
         {
             _dataListStorageService.AddMessage(text);
 
             return text;
         }
 
-        public async Task<DataList> GetDataListAsync(int length, CancellationToken cancellationToken = default)
+        public virtual async Task<DataList> GetDataListAsync(int length, CancellationToken cancellationToken = default)
         {
             return new DataList(_dataListStorageService.GetMessages().ToList());
         }
