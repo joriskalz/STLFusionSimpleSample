@@ -21,25 +21,21 @@ namespace STLFusionSimpleSample.Server.Services
             _dataListStorageService = dataListStorageService;
         }
 
-        public virtual async Task<string> AddMessageAsync(string text, CancellationToken cancellationToken = default)
+        public virtual Task<string> AddMessageAsync(string text, CancellationToken cancellationToken = default)
         {
             _dataListStorageService.AddMessage(text);
-
             // Invalidation
             Computed.Invalidate(EveryDataList);
-
-            return text;
+            return Task.FromResult(text);
         }
 
         public virtual async Task<DataList> GetDataListAsync(int length, CancellationToken cancellationToken = default)
         {
             await EveryDataList().ConfigureAwait(false);
-
             return new DataList(_dataListStorageService.GetMessages(length).ToList());
         }
 
         [ComputeMethod]
         protected virtual Task<Unit> EveryDataList() => TaskEx.UnitTask;
-
     }
 }

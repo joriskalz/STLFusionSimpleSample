@@ -33,7 +33,7 @@
 @code {
     private bool _collapseNavMenu = true;
 
-    private string NavMenuCssClass => _collapseNavMenu ? "collapse" : null;
+    private string NavMenuCssClass => _collapseNavMenu ? "collapse" : "";
 
     private void ToggleNavMenu()
         => _collapseNavMenu = !_collapseNavMenu;

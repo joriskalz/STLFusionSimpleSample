@@ -85,12 +85,6 @@
 
     private bool HasError => Locals.Value.Error != null;
 
-    protected override async Task OnInitializedAsync()
-    {
-        if (ReferenceEquals(State, null))
-            return; // Not sure why this happens on SSB sometimes, but...
-    }
-
     protected override async Task<Model> ComputeStateAsync(CancellationToken cancellationToken)
     {
         var dataList = await dataService.GetDataListAsync(10, cancellationToken);
