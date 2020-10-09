@@ -20,8 +20,8 @@
 
 <p>This component demonstrates fetching data from the server. As soon as the data is invalid on the server, it is automatically updated.</p>
 
-<div class="mb-2  p-3">
-    <label class="p-3">Selected country: @Country</label>
+<div class="pb-4">
+    <label>Selected country: @Country</label>
     <select class="form-control" @bind="Country">
         <option selected disabled value="-1">Please select a country</option>
         <option value="Germany"> Germany</option>
@@ -33,13 +33,27 @@
     </select>
 </div>
 
-
 @if (dataList == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
+
+    <label>Smooth <RadzenCheckBox @bind-Value="@smooth" Name="smooth"></RadzenCheckBox></label>
+    <RadzenChart>
+        <RadzenAreaSeries Smooth="@smooth" Data="@dataList" CategoryProperty="Date" Title="Temp in C" ValueProperty="TemperatureC" RenderingOrder="1">
+        </RadzenAreaSeries>
+        <RadzenAreaSeries Smooth="@smooth" Data="@dataList" CategoryProperty="Date" Title="Temp in F" ValueProperty="TemperatureF">
+        </RadzenAreaSeries>
+
+        <RadzenCategoryAxis Padding="20" FormatString="{0:MMM}" />
+        <RadzenValueAxis>
+            <RadzenGridLines Visible="true" />
+            <RadzenAxisTitle Text="Forecast" />
+        </RadzenValueAxis>
+    </RadzenChart>
+
     <table class="table">
         <thead>
             <tr>
@@ -61,9 +75,12 @@ else
             }
         </tbody>
     </table>
+
 }
 
 @code {
+
+    bool smooth = true;
 
     private string country = string.Empty;
     private string Country
@@ -79,9 +96,7 @@ else
         }
     }
 
-
     private bool HasError => Locals.Value.Error != null;
-
 
     protected override async Task<WeatherForecastModel> ComputeStateAsync(System.Threading.CancellationToken cancellationToken)
     {

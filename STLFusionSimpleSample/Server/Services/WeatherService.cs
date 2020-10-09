@@ -20,10 +20,16 @@ namespace STLFusionSimpleSample.Server.Services
         public virtual async Task<IEnumerable<WeatherForecast>> GetAsync(string country, CancellationToken cancellationToken = default)
         {
             var rng = new Random();
-            var list = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            var lastValue = 20;
+            var list = Enumerable.Range(1, 30).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
+                TemperatureC = ((Func<int>)(() =>
+                {
+                    var newValue = lastValue + rng.Next(-4, 4);
+                    lastValue = newValue;
+                    return newValue;
+                }))(),
                 Summary = $"It is {Summaries[rng.Next(Summaries.Length)]} in {country}"
             })
             .ToArray();
