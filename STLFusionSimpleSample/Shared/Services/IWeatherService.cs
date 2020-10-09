@@ -9,7 +9,7 @@ namespace STLFusionSimpleSample.Shared.Services
     public interface IWeatherService
     {
         // Readers
-        [ComputeMethod(AutoInvalidateTime = 1)]
-        Task<IEnumerable<WeatherForecast>> GetAsync(CancellationToken cancellationToken = default);
+        [ComputeMethod(AutoInvalidateTime = 2)]
+        Task<IEnumerable<WeatherForecast>> GetAsync(string country, CancellationToken cancellationToken = default);
     }
 }

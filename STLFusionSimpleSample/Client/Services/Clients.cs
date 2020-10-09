@@ -31,6 +31,6 @@ namespace STLFusionSimpleSample.Client.Services
     {
         // Readers
         [Get("getAsync")]
-        Task<IEnumerable<WeatherForecast>> GetAsync(CancellationToken cancellationToken = default);
+        Task<IEnumerable<WeatherForecast>> GetAsync(string country, CancellationToken cancellationToken = default);
     }
 }
