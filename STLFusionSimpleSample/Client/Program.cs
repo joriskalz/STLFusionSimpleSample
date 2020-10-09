@@ -73,27 +73,18 @@ namespace STLFusionSimpleSample.Client
 
             // This method registers services marked with any of ServiceAttributeBase descendants, including:
             // [Service], [ComputeService], [RestEaseReplicaService], [LiveStateUpdater]
-
             services.AttributeBased(ClientSideScope).AddServicesFrom(Assembly.GetExecutingAssembly());
 
-            //foreach (var item in services)
-            //{
-            //    if (item.ServiceType == typeof(IListExampleService) || item.ServiceType == typeof(IChatService))
-            //    {
-            //        Console.WriteLine(item?.ToString());
-            //    }
-
-            //}
             ConfigureSharedServices(services);
         }
 
         public static void ConfigureSharedServices(IServiceCollection services)
         {
             // Default delay for update delayers
-            //services.AddSingleton(c => new UpdateDelayer.Options()
-            //{
-            //    Delay = TimeSpan.FromSeconds(0.1),
-            //});
+            services.AddSingleton(c => new UpdateDelayer.Options()
+            {
+                Delay = TimeSpan.FromSeconds(0.1),
+            });
 
             //services.AddSingleton<IPluralize, Pluralizer>();
 
