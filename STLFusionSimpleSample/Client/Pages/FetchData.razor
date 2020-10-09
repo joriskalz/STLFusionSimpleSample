@@ -1,12 +1,25 @@
 @page "/fetchdata"
 @using STLFusionSimpleSample.Shared
+@using STLFusionSimpleSample.Shared.Services
+
 @inject HttpClient Http
+@inherits LiveComponentBase<WeatherForecastModel, WeatherForecastLocalsModel>
+@inject IWeatherService weatherService
+
+@{
+    var locals = Locals.Value;
+    var state = State.LastValue;
+    var dataList = state.Forecast;
+    var error = State.Error;
+}
 
 <h1>Weather forecast</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<StatefulComponentState Component="@this" />
 
-@if (_forecasts == null)
+<p>This component demonstrates fetching data from the server. As soon as the data is invalid on the server, it is automatically updated.</p>
+
+@if (dataList == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -22,7 +35,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in _forecasts)
+            @foreach (var forecast in dataList)
             {
                 <tr>
                     <td>@forecast.Date.ToShortDateString()</td>
@@ -36,8 +49,17 @@ else
 }
 
 @code {
-    private WeatherForecast[] _forecasts = null!;
 
-    protected override async Task OnInitializedAsync()
-        => _forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+    private bool HasError => Locals.Value.Error != null;
+
+    protected override async Task<WeatherForecastModel> ComputeStateAsync(System.Threading.CancellationToken cancellationToken)
+    {
+        var dataList = await weatherService.GetAsync(cancellationToken);
+
+        return new WeatherForecastModel()
+        {
+            Forecast = dataList,
+        };
+
+    }
 }

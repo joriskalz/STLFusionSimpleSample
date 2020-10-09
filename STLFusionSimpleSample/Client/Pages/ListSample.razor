@@ -6,7 +6,7 @@
 @using STLFusionSimpleSample.Shared.Services
 @using STLFusionSimpleSample.Shared.Model
 
-@inherits LiveComponentBase<ListSample.Model, ListSample.LocalsModel>
+@inherits LiveComponentBase<ListSampleModel, ListSampleLocalsModel>
 
 @inject IDataService dataService
 
@@ -74,23 +74,13 @@
 </table>
 
 @code {
-    public class LocalsModel
-    {
-        public string Message { get; set; } = "";
-        public Exception? Error { get; set; }
-    }
-
-    public class Model
-    {
-        public DataList DataList { get; set; } = new DataList();
-    }
 
     private bool HasError => Locals.Value.Error != null;
 
-    protected override async Task<Model> ComputeStateAsync(CancellationToken cancellationToken)
+    protected override async Task<ListSampleModel> ComputeStateAsync(CancellationToken cancellationToken)
     {
         var dataList = await dataService.GetDataListAsync(10, cancellationToken);
-        return new Model()
+        return new ListSampleModel()
         {
             DataList = dataList,
         };
@@ -123,7 +113,7 @@
     private void SetError(Exception? error)
         => UpdateLocals(l => l.Error = error);
 
-    private void UpdateLocals(Action<LocalsModel> updater)
+    private void UpdateLocals(Action<ListSampleLocalsModel> updater)
     {
         // Ideally, Locals should be immutable
         var clone = MemberwiseCloner.Clone(Locals.Value);

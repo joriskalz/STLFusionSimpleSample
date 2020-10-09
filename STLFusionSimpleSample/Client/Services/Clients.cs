@@ -1,6 +1,7 @@
 ﻿using RestEase;
 using Stl.Fusion.Client;
 using Stl.Fusion.Client.RestEase;
+using STLFusionSimpleSample.Shared;
 using STLFusionSimpleSample.Shared.Model;
 using STLFusionSimpleSample.Shared.Services;
 using System;
@@ -22,5 +23,14 @@ namespace STLFusionSimpleSample.Client.Services
         // Readers
         [Get("getData")]
         Task<DataList> GetDataListAsync(int length, CancellationToken cancellationToken = default);
+    }
+
+    [RestEaseReplicaService(typeof(IWeatherService), Scope = Program.ClientSideScope)]
+    [BasePath("weatherforecast")]
+    public interface IWeatherClient : IRestEaseReplicaClient
+    {
+        // Readers
+        [Get("getAsync")]
+        Task<IEnumerable<WeatherForecast>> GetAsync(CancellationToken cancellationToken = default);
     }
 }
