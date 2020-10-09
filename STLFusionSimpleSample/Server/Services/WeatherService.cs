@@ -17,14 +17,14 @@ namespace STLFusionSimpleSample.Server.Services
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        public virtual async Task<IEnumerable<WeatherForecast>> GetAsync(CancellationToken cancellationToken = default)
+        public virtual async Task<IEnumerable<WeatherForecast>> GetAsync(string country, CancellationToken cancellationToken = default)
         {
             var rng = new Random();
             var list = Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
+                Summary = $"It is {Summaries[rng.Next(Summaries.Length)]} in {country}"
             })
             .ToArray();
 

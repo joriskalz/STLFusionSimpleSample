@@ -26,9 +26,9 @@ namespace STLFusionSimpleSample.Server.Controllers
         }
 
         [HttpGet("getAsync")]
-        public Task<IEnumerable<WeatherForecast>> GetAsync(CancellationToken cancellationToken = default)
+        public Task<IEnumerable<WeatherForecast>> GetAsync(string country, CancellationToken cancellationToken = default)
         {
-            return PublishAsync(ct => _weatherService.GetAsync(ct));
+            return PublishAsync(ct => _weatherService.GetAsync(country ?? string.Empty, ct));
         }
     }
 }

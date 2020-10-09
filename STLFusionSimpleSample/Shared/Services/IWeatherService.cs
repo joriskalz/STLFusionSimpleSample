@@ -10,6 +10,6 @@ namespace STLFusionSimpleSample.Shared.Services
     {
         // Readers
         [ComputeMethod(AutoInvalidateTime = 1)]
-        Task<IEnumerable<WeatherForecast>> GetAsync(CancellationToken cancellationToken = default);
+        Task<IEnumerable<WeatherForecast>> GetAsync(string country, CancellationToken cancellationToken = default);
     }
 }
