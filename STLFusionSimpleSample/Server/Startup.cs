@@ -21,12 +21,12 @@ namespace STLFusionSimpleSample.Server
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -48,8 +48,7 @@ namespace STLFusionSimpleSample.Server
             services.AttributeBased().AddServicesFrom(Assembly.GetExecutingAssembly());
             services.AddSingleton(c => new UpdateDelayer.Options() { Delay = TimeSpan.FromSeconds(0.01) });
 
-
-            // Registering shared services from the client
+            // Registering shared services from the client - you need this only if you want to use SSB mode too
             //Client.Program.ConfigureSharedServices(services);
 
             // Web
@@ -85,7 +84,7 @@ namespace STLFusionSimpleSample.Server
             app.UseWebSockets(new WebSocketOptions()
             {
                 ReceiveBufferSize = 16_384,
-                KeepAliveInterval = TimeSpan.FromSeconds(15),
+                KeepAliveInterval = TimeSpan.FromSeconds(30),
             });
             app.UseFusionSession();
 
